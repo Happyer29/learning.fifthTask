@@ -12,33 +12,51 @@ public class Main {
         int s = 11;
         for (int i = 1; i <= s; i++) {
             if (i < s / 2.0) {
-                printLine(i, s);
-            } else if (i == s / 2.0) {
-                printLine(i - s, s);
+                printLine(i, s, 3);
+                //System.out.print("<" + i);
+            } else if (i == s / 2 + 1) {
+                printLine(i, s, 11);
+                //System.out.print("test" + i);
             } else {
-                printLine(i, s);
+                printLine(i, s, 3);
+                int res = s - i + 1;
+                //System.out.print(">" + res);
             }
             System.out.println();
         }
     }
 
-    private static void printLine(int i, int s) {
-        for (int j = 1; j <= s; j++) {
-//            int symbols = s + s - 1;
-//            if((s - symbols) / 2.0 < j){
-//                System.out.print(" ");
-//            }
-//            else if((s - symbols) / 2.0 > j){
-//                System.out.print(" ");
-//            }
-//            else{
-//                System.out.print("*");
-//            }
-//            System.out.print(i);
-            int symbols = s + s - 1;
-            int spaces = s - symbols;
+    private static void printLine(int i, int s, int symbols) {
 
-            //if(j)
+        if(i == 1 || i == s){
+            symbols = 1;
+        }
+        int spaces = s - symbols;
+        int spacesRow = Math.abs(s / 2 - i + 1);
+        spacesRow = spacesRow == s ? 0 : spacesRow;
+        int intersymbolSpaces = Math.abs(s - symbols - spacesRow * 2)/2;
+
+        System.out.println("intersymbols: " + intersymbolSpaces);
+        System.out.println("spaces: " + spacesRow);
+        
+        int intersymbolSpacesCount = 0;
+        int spacesCount = 0;
+        int symbolsCount = 0;
+        for (int j = 1; j <= s; j++) {
+            if(spacesCount < spacesRow){
+                spacesCount++;
+                System.out.print(" ");
+            }
+            else{
+
+
+                symbolsCount++;
+                System.out.print("*");
+
+            }
+
+
+            
         }
     }
 }
